@@ -1,7 +1,8 @@
 /**
  * HelloApp.java - A simple Java application that accepts multiple names as
- * command-line arguments and displays a personalized greeting for each user using
- * an enhanced for loop. If no names are provided, it should display "Hello, World!".
+ * command-line arguments and displays a personalized greeting using
+ * substring to remove the trailing delimiter. If no names are provided,
+ * it displays "Hello, World!".
  *
  * Usage: java HelloApp [name1] [name2] ... [nameN]
  * - If names are provided, it will display "Hello, [Name1], [Name2], ...!" to the
@@ -9,49 +10,55 @@
  * - If no names are provided, it will display "Hello, World!"
  *
  * @author Aaditya Anand
- * @version 5.0
+ * @version 6.0
  * @since UC1
  */
 
-// Key Concepts for HelloApp UC5:
-// 1. Command-line Arguments: Accessing multiple user inputs via args[] parameter
-// 2. Array Iteration: Using enhanced for loop to traverse all arguments
-// 3. Enhanced For Loop: Simplifies iteration over arrays without manual index management
-// 4. StringBuilder: Efficiently building a string in a loop without creating multiple
-//    immutable string objects
-// 5. Default Values: Providing a fallback when no arguments are provided
-// 6. String Concatenation: Building the final greeting message
+// Key Concepts for HelloApp UC6:
+// 1. Enhanced For Loop: A simplified syntax for iterating over arrays or collections
+//    without needing an index variable.
+// 2. StringBuilder: A mutable sequence of characters used for efficient string
+//    concatenation.
+// 3. String Manipulation: Using methods like `substring()` to modify strings after
+//    construction.
+// 4. Trailing Character Removal: Techniques to remove unwanted characters (like a
+//    comma and space) from the end of a string after building it.
+// 5. String Length: Understanding how to use the `length()` method to determine
+//    the size of a string and manipulate it accordingly.
 
-// Sample Code for HelloApp UC5:
+// Sample Code for HelloApp UC6:
 // StringBuilder nameBuilder = new StringBuilder();
-// boolean first = true;
 // for (String name : args) {
-//     if (!first) {
-//         nameBuilder.append(", ");
-//     }
-//     nameBuilder.append(name);
-//     first = false;
+//     nameBuilder.append(name).append(", ");
+// }
+// if (nameBuilder.length() > 0) {
+//     name = nameBuilder.substring(0, nameBuilder.length() - 2); // Remove the last ", "
 // }
 
 public class HelloApp {
     public static void main(String[] args) {
+        // Declare the name variable to hold the final greeting target
         String name;
 
+        // Check if no arguments were provided
         if (args.length == 0) {
+            // Default to "World" when no names are given
             name = "World";
         } else {
+            // Use StringBuilder for efficient string construction
             StringBuilder nameBuilder = new StringBuilder();
-            boolean first = true;
+
+            // Iterate through all arguments using enhanced for loop
+            // Append each name followed by the delimiter ", "
             for (String arg : args) {
-                if (!first) {
-                    nameBuilder.append(", ");
-                }
-                nameBuilder.append(arg);
-                first = false;
+                nameBuilder.append(arg).append(", ");
             }
-            name = nameBuilder.toString();
+
+            // Use substring() to remove the trailing ", " (last 2 characters)
+            name = nameBuilder.substring(0, nameBuilder.length() - 2);
         }
 
+        // Display the personalized greeting
         System.out.println("Hello, " + name + "!");
     }
 }
