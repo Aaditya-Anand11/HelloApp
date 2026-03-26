@@ -8,20 +8,20 @@ Hello App Use Case begins with simple display of Hello World then goes on to dis
 
 ## Use Case Roadmap
 
-| UC | Description |
-|----|-------------|
-| UC1 | Print a basic greeting in the console |
-| UC2 | Accept one name via command-line input and greet that user |
-| UC3 | Support optional argument handling with a default greeting path |
-| UC4 | Handle multiple command-line names in one execution |
-| UC5 | Read a single name from standard input (enhanced for loop) |
-| UC6 | Read and process multiple names from standard input |
-| UC7 | Store entered names in memory and list them on request |
-| UC8 | Add removal support for stored names |
-| UC9 | Extract input-processing logic into dedicated methods |
-| UC10 | Move name-management responsibilities into a separate class |
-| UC11 | Persist names to storage and reload them across runs |
-| UC12 | Render greeting text in banner-style output for enhanced display |
+| UC | Branch | Description | Status |
+|----|--------|-------------|--------|
+| UC1 | `feature/UC1-display-hello` | Print a basic `Hello, World!` greeting | Done |
+| UC2 | `feature/UC2-display-name` | Accept one name via command-line arg and greet | Done |
+| UC3 | `feature/UC3-display-name-default` | Default to `World` if no argument provided | Done |
+| UC4 | `feature/UC4-display-multiple-names` | Accept multiple names, display comma-separated | Done |
+| UC5 | `feature/UC5-enhanced-for-loop` | Refactor UC4 using enhanced for-each loop | Done |
+| UC6 | `feature/UC6-substring-method` | Use `substring()` to remove trailing delimiter | Done |
+| UC7 | `feature/UC7-string-join` | Use `String.join()` for cleaner multi-name greeting | Done |
+| UC8 | `feature/UC8-*` | Store entered names in memory and list them on request | Planned |
+| UC9 | `feature/UC9-*` | Add removal support for stored names | Planned |
+| UC10 | `feature/UC10-*` | Extract input-processing logic into dedicated methods | Planned |
+| UC11 | `feature/UC11-*` | Move name-management responsibilities into a separate class | Planned |
+| UC12 | `feature/UC12-*` | Persist names to storage and reload them across runs | Planned |
 
 ## Project Structure
 
@@ -53,13 +53,26 @@ HelloApp/
 mvn compile
 
 # Run with default greeting
-mvn exec:java
+mvn exec:java -Dexec.mainClass="HelloApp"
 
-# Run with a name argument
+# Run with a single name argument (UC2+)
 mvn exec:java -Dexec.mainClass="HelloApp" -Dexec.args="Alice"
 
 # Run with multiple names (UC4+)
 mvn exec:java -Dexec.mainClass="HelloApp" -Dexec.args="Alice Bob Charlie"
+```
+
+## Example Output
+
+```
+# No arguments
+Hello, World!
+
+# Single argument: Alice
+Hello, Alice!
+
+# Multiple arguments: Alice Bob Charlie
+Hello, Alice, Bob, Charlie!
 ```
 
 ## Branch Strategy
